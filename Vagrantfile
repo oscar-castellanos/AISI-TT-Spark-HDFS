@@ -7,6 +7,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider "virtualbox" do |vb|
 	vb.memory = "1024"
+
+  # Configure hostmanager plugin
+  config.hostmanager.enabled = true
+  config.hostmanager.manage_host = true
+  config.hostmanager.manage_guest = true
+  config.hostmanager.ignore_private_ip = false
   
   # Master Node
   config.vm.define :master-node do |master-node|
