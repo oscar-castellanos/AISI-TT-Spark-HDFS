@@ -18,9 +18,9 @@ Vagrant.configure("2") do |config|
   config.vm.define "master-node", primary: true do |master-node|
     master-node.vm.host_name = 'master-node.local'
     master-node.vm.network :private_network, ip: "192.168.100.100"
-	  master-node.vm.network "forwarded_port", guest: 8080, host: 8080	#head
+    master-node.vm.network "forwarded_port", guest: 8080, host: 8080	#head
     master-node.vm.network "forwarded_port", guest: 50070, host: 50070	#head
-	  master-node.vm.network "forwarded_port", guest: 8088, host: 18088	#body
+    master-node.vm.network "forwarded_port", guest: 8088, host: 18088	#body
     master-node.vm.network "forwarded_port", guest: 19888, host: 19888	#body
     master-node.vm.provision "shell", path: ""
   end
