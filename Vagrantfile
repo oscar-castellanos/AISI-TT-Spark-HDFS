@@ -24,6 +24,7 @@ Vagrant.configure("2") do |config|
     master.vm.network "forwarded_port", guest: 8088, host: 18088	#body
     master.vm.network "forwarded_port", guest: 19888, host: 19888	#body
     #master.vm.provision "shell", path: "provisioning/spark/setup-spark.sh"
+	#worker2.vm.provision "shell", path: "provisioning/spark/setup-spark.sh"
   end
   
   # Worker 1
@@ -31,13 +32,15 @@ Vagrant.configure("2") do |config|
     worker1.vm.host_name = 'worker1.local'
     worker1.vm.network :private_network, ip: "192.168.100.101"
     #worker1.vm.provision "shell", path: "provisioning/spark/setup-spark.sh"
+	#worker2.vm.provision "shell", path: "provisioning/spark/setup-spark.sh"
   end
   
   # Worker 2
   config.vm.define "worker2" do |worker2|
     worker2.vm.host_name = 'worker2.local'
     worker2.vm.network :private_network, ip: "192.168.100.102"
-    #worker2.vm.provision "shell", path: "provisioning/spark/setup-spark.sh"
+	worker2.vm.provision "shell", path: "provisioning/java/setup-java.sh"
+    worker2.vm.provision "shell", path: "provisioning/spark/setup-spark.sh"
   end
   
 end
