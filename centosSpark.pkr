@@ -1,0 +1,30 @@
+{
+    "builders": [
+        {
+            "communicator": "ssh",
+            "type": "vagrant",
+            "source_path": "generic/centos7",
+            "box_name": "aff-ocr-aisi2021tt/centos7",
+            "provider": "virtualbox"
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "provisioning/hadoopUser/createHadoopUser.sh"
+        },
+        {
+            "type": "shell",
+            "script": "provisioning/java/setup-java.sh"
+        },
+        {
+            "type": "shell",
+            "script": "provisioning/hadoop/setup-hadoop.sh"
+        },
+        {
+            "type": "shell",
+            "script": "provisioning/spark/setup-spark.sh"
+        }
+    ]
+}
