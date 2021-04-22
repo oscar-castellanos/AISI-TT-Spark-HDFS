@@ -7,10 +7,10 @@
 HADOOP_VERSION=hadoop-3.2.2
 BASE_FOLDER=/home/hadoop/
 
-sudo cd ${BASE_FOLDER}
-sudo wget http://apache.cs.utah.edu/hadoop/common/${HADOOP_VERSION}/${HADOOP_VERSION}.tar.gz -O ${BASE_FOLDER}hadoop.tar.gz
-sudo tar -xzf hadoop.tar.gz && sudo /bin/rm hadoop.tar.gz
-sudo mv hadoop* hadoop
-sudo chown -R hadoop:hadoop hadoop/
-sudo ln -s hadoop/bin/* /bin
-sudo ln -s hadoop/sbin/* /sbin
+sudo wget http://apache.cs.utah.edu/hadoop/common/${HADOOP_VERSION}/${HADOOP_VERSION}.tar.gz
+sudo tar -xzf ${HADOOP_VERSION}.tar.gz && sudo /bin/rm ${HADOOP_VERSION}.tar.gz
+sudo mkdir ${BASE_FOLDER}hadoop
+sudo mv ${HADOOP_VERSION} ${BASE_FOLDER}hadoop
+sudo chown -R hadoop:hadoop ${BASE_FOLDER}hadoop
+sudo ln -s ${BASE_FOLDER}hadoop/bin/* /bin
+sudo ln -s ${BASE_FOLDER}hadoop/sbin/* /sbin
