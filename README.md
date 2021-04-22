@@ -4,7 +4,7 @@ Repositorio para el trabajo tutelado de AISI, basado en Spark + HDFS
 ## Fase 1: Generar con Packer una box basada en centos7.
 
 ``` sh
-packer build centosSpark.pkr 
+packer build centosSpark.json 
 ```
 
 Tras esta fase se generará una vagrant box con:

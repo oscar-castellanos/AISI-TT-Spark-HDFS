@@ -9,24 +9,24 @@ SPARK_CONF_DIR=/usr/local/spark/conf
 function installLocalSpark {
 	echo "install spark from local file"
 	FILE=/vagrant/resources/${SPARK_ARCHIVE}
-	tar -xzf $FILE -C /usr/local
+	sudo tar -xzf $FILE -C /usr/local
 }
 
 function installRemoteSpark {
 	echo "install spark from remote file"
 	curl -o /vagrant/resources/${SPARK_ARCHIVE} -O -L ${SPARK_MIRROR_DOWNLOAD}
-	tar -xzf /vagrant/resources/${SPARK_ARCHIVE} -C /usr/local
+	sudo tar -xzf /vagrant/resources/${SPARK_ARCHIVE} -C /usr/local
 }
 
 function setupSpark {
 	echo "setup spark"
-	touch ${SPARK_CONF_DIR}/slaves
+	sudo touch ${SPARK_CONF_DIR}/slaves
 }
 
 function setupEnvVars {
 	echo "Creating spark environment variables"
-	echo export SPARK_HOME=/usr/local/spark >> /etc/profile.d/spark.sh
-	echo export PATH=\${SPARK_HOME}/bin:\${PATH} >> /etc/profile.d/spark.sh
+	echo "export SPARK_HOME=/usr/local/spark" | sudo tee -a /etc/profile.d/spark.sh
+	echo "export PATH=\${SPARK_HOME}/bin:\${PATH}" | sudo tee -a /etc/profile.d/spark.sh
 }
 
 function installSpark {
@@ -40,7 +40,7 @@ function installSpark {
 		echo "Spark already downloaded!"
 		installLocalSpark
 	fi
-	ln -s /usr/local/${SPARK_VERSION}-bin-${HADOOP_VERSION} /usr/local/spark
+	sudo ln -s /usr/local/${SPARK_VERSION}-bin-${HADOOP_VERSION} /usr/local/spark
 }
 
 echo "\n----- Setup Spark ------\n"
