@@ -1,3 +1,5 @@
+## PARA EL MASTER
+
 #!/bin/bash
 
 # Install ansible and other stuff
@@ -14,10 +16,6 @@ if [ ! -f /vagrant/id_rsa.pub ]; then
 	chown vagrant:vagrant $USER_DIR/id_rsa*
 	cp $USER_DIR/id_rsa.pub /vagrant    
 fi
-
-# Create hadoop user and group
-sudo useradd -m -d /home/hadoop hadoop
-echo -e ".h4d00p.\n.h4d00p.\n" | sudo passwd hadoop
 
 # Create hadoop ssh keys
 HADOOP_DIR=/home/hadoop/.ssh
