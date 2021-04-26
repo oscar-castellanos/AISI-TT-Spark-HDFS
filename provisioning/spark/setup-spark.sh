@@ -4,7 +4,9 @@ HADOOP_VERSION=hadoop3.2
 SPARK_ARCHIVE=${SPARK_VERSION}-bin-${HADOOP_VERSION}.tar.gz
 SPARK_MIRROR_DOWNLOAD=https://ftp.cixug.es/apache/spark/${SPARK_VERSION}/${SPARK_VERSION}-bin-${HADOOP_VERSION}.tgz
 SPARK_RES_DIR=/vagrant/resources/spark
-SPARK_CONF_DIR=/usr/local/spark/conf
+SPARK_DOWNLOAD_FILE=/var/${SPARK_ARCHIVE}
+SPARK_INSTALL_DIR=/usr/local/spark
+SPARK_CONF_DIR=${SPARK_INSTALL_DIR}/conf
 
 function installLocalSpark {
 	echo "install spark from local file"
@@ -14,8 +16,9 @@ function installLocalSpark {
 
 function installRemoteSpark {
 	echo "install spark from remote file"
-	sudo wget ${SPARK_MIRROR_DOWNLOAD} -O /vagrant/resources/${SPARK_ARCHIVE}
-	sudo tar -xzf /vagrant/resources/${SPARK_ARCHIVE} -C /usr/local
+	sudo wget ${SPARK_MIRROR_DOWNLOAD} -O ${SPARK_DOWNLOAD_FILE}
+	sudo tar -xzf ${SPARK_DOWNLOAD_FILE} -C /usr/local
+	sudo rm ${SPARK_DOWNLOAD_FILE}
 }
 
 function setupSpark {
@@ -30,9 +33,8 @@ function setupEnvVars {
 }
 
 function installSpark {
-	
 
-	if [ ! -f /vagrant/resources/${SPARK_ARCHIVE} ]; 
+	if [ ! -f ${SPARK_DOWNLOAD_FILE} ]; 
 	then
 		echo "Spark not downloaded!"
 		installRemoteSpark
@@ -40,7 +42,7 @@ function installSpark {
 		echo "Spark already downloaded!"
 		installLocalSpark
 	fi
-	sudo ln -s /usr/local/${SPARK_VERSION}-bin-${HADOOP_VERSION} /usr/local/spark
+	sudo ln -s /usr/local/${SPARK_VERSION}-bin-${HADOOP_VERSION} ${SPARK_INSTALL_DIR}
 }
 
 echo "\n----- Setup Spark ------\n"
