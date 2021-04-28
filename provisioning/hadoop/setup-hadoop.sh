@@ -12,5 +12,5 @@ sudo tar -xzf ${HADOOP_VERSION}.tar.gz && sudo /bin/rm ${HADOOP_VERSION}.tar.gz
 sudo mkdir ${BASE_FOLDER}hadoop
 sudo mv ${HADOOP_VERSION}/* ${BASE_FOLDER}hadoop
 sudo chown -R hadoop:hadoop ${BASE_FOLDER}hadoop
-sudo echo "export HADOOP_HOME=/home/hadoop/hadoop" >> /home/hadoop/.bashrc
-sudo echo 'export PATH=${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin' >> /home/hadoop/.bashrc
+sudo echo "export HADOOP_HOME=/home/hadoop/hadoop" | sudo tee -a /home/hadoop/.bashrc
+sudo echo 'export PATH=${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin' | sudo tee -a /home/hadoop/.bashrc
