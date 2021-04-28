@@ -27,6 +27,7 @@ Vagrant.configure("2") do |config|
     master.vm.provision "shell", path: "provisioning/hadoopUser/authHadoopPasswordless.sh"
     master.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "provisioning/ansible/playbook.yml"
+      ansible.limit = "all"
       ansible.inventory_path = "ansible.inventory"
       #ansible.install_mode = "pip3"
     end
