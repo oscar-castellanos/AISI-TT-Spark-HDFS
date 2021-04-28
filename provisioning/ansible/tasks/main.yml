@@ -1,0 +1,21 @@
+# Define tasks here
+- name: Copy hadoop files to /home/hadoop/hadoop/etc/hadoop
+  copy:
+    src: hadoop-conf/{{ item }}
+    dest: /home/hadoop/hadoop/etc/hadoop
+    owner: hadoop
+    group: hadoop   
+  loop:
+    - core-site.xml
+    - hdfs-site.xml
+    - mapred-site.xml
+    - yarn-site.xml
+    - workers
+
+- name: Format HDFS
+  hosts: masters
+  command: hdfs namenode -format 
+  
+- name: Start HDFS
+  hosts: masters
+  command: start-dfs.sh

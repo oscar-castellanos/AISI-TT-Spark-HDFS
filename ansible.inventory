@@ -1,6 +1,6 @@
 # Masters
 [masters]
-localhost
+master.local
 # Workers
 [workers]
 worker1.local
