@@ -1,10 +1,10 @@
 # Masters
 [masters]
-master.local
+master
 # Workers
 [workers]
-worker1.local
-worker2.local
+worker1
+worker2
 # Group 'cluster' with masters and workers
 [cluster:children]
 masters

@@ -6,3 +6,9 @@
     - vars/main.yml
   tasks:
     - import_tasks: tasks/main.yml
+
+- hosts: masters
+  become: yes
+
+  tasks:
+    - import_tasks: tasks/master.yml

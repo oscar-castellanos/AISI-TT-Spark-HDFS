@@ -25,6 +25,11 @@ Vagrant.configure("2") do |config|
     master.vm.network "forwarded_port", guest: 19888, host: 19888	#body
     master.vm.provision "shell", path: "provisioning/hadoopUser/master.sh"
     master.vm.provision "shell", path: "provisioning/hadoopUser/authHadoopPasswordless.sh"
+    master.vm.provision "ansible_local" do |ansible|
+      ansible.playbook = "provisioning/ansible/playbook.yml"
+      ansible.inventory_path = "ansible.inventory"
+      #ansible.install_mode = "pip3"
+    end
   end
   
   # Worker 1

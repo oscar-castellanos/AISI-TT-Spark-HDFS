@@ -17,7 +17,7 @@ Tras esta fase se generará una vagrant box con:
  Finalmente añade la box para su uso con vagrant.
 
 ``` sh
- vagrant box add --name aff-ocr-aisi2021/centos7 output-vagrant/package.box
+vagrant box add --name aff-ocr-aisi2021/centos7 output-vagrant/package.box
 ```
 
 ## Fase 2: Generar un proyecto Vagrant para desplegar el cluster virtual
