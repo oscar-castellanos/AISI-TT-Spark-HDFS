@@ -1,0 +1,9 @@
+# Define tasks here
+- name: Format HDFS
+  command: /home/hadoop/hadoop/bin/hdfs namenode -format 
+  
+- name: Start HDFS
+  command: /home/hadoop/hadoop/sbin/start-dfs.sh
+  
+- name: Start Yarn
+  command: /home/hadoop/hadoop/sbin/start-yarn.sh 

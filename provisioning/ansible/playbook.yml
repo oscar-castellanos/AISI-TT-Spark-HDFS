@@ -11,4 +11,4 @@
   become: yes
 
   tasks:
-    - import_tasks: tasks/master.yml
+    - import_tasks: tasks/mymaster.yml

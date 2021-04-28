@@ -1,11 +1,8 @@
-# Masters
 [masters]
-master
-# Workers
+192.168.100.100
 [workers]
-worker1
-worker2
-# Group 'cluster' with masters and workers
+192.168.100.101
+192.168.100.102
 [cluster:children]
 masters
 workers
