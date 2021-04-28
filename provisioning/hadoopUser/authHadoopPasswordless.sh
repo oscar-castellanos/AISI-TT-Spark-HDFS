@@ -21,7 +21,12 @@ if [ ! -f /vagrant/id_rsa.hadoop.pub ]; then
 	exit -1
 fi
 
-sed -i "/master.local/d" .ssh/authorized_keys >& /dev/null
+if [ ! -f $USER_DIR/authorized_keys ]; then
+    mkdir -p $USER_DIR
+    touch $USER_DIR/authorized_keys
+fi
+sed -i "/master.local/d" $USER_DIR/authorized_keys >& /dev/null
 cat /vagrant/id_rsa.hadoop.pub >> $USER_DIR/authorized_keys
-chown hadoop:hadoop $USER_DIR/authorized_keys
+chown -R hadoop:hadoop $USER_DIR
 chmod 0600 $USER_DIR/authorized_keys >& /dev/null
+chmod 0700 $USER_DIR >& /dev/null
