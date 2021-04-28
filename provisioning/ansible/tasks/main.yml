@@ -19,3 +19,7 @@
 - name: Start HDFS
   hosts: masters
   command: start-dfs.sh
+  
+- name: Start Yarn
+  hosts: masters
+  command: start-yarn.sh 
