@@ -112,3 +112,9 @@ sudo su hadoop
 spark-submit --deploy-mode cluster --class org.apache.spark.examples.SparkPi /usr/local/spark/examples/jars/spark-examples_2.12-3.1.1.jar 10
 ```
  - Puedes comprobar los resultados desde la interfaz web de Yarn, accediendo a Desde la interfaz web, accediendo a `http://master.local:8088`.
+
+
+## Referencias principales
+
+ - https://www.linode.com/docs/guides/how-to-install-and-set-up-hadoop-cluster/
+ - https://www.linode.com/docs/databases/hadoop/install-configure-run-spark-on-top-of-hadoop-yarn-cluster/
