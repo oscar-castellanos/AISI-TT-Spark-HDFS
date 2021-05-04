@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     master.vm.network "forwarded_port", guest: 19888, host: 19888	#...
     master.vm.provision "shell", path: "provisioning/hadoopUser/master.sh"
     master.vm.provision "shell", path: "provisioning/hadoopUser/authHadoopPasswordless.sh"
-    master.vm.provision "LAST_PROVISIONER", run: "never", type: "ansible_local" do |ansible|
+    master.vm.provision "Ansible_Spark_Provisioner", run: "never", type: "ansible_local" do |ansible|
       ansible.playbook = "provisioning/ansible/playbook.yml"
       ansible.limit = "all"
       ansible.inventory_path = "ansible.inventory"

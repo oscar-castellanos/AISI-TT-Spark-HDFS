@@ -1,0 +1,10 @@
+- name: Update .bashrc to know Spark
+  command: echo 'export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop' >> /home/hadoop/.bashrc && echo 'export LD_LIBRARY_PATH=${HADOOP_HOME}/lib/native:$LD_LIBRARY_PATH' >> /home/hadoop/.bashrc
+
+- name: Copy Spark configuration
+  copy:
+    src: spark-conf/spark-defaults.conf
+    dest: /usr/local/spark/conf/spark-defaults.conf
+    owner: vagrant
+    group: vagrant
+    mode: '0644'

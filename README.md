@@ -1,5 +1,12 @@
 # AISI-TT-Spark-HDFS
-Repositorio para el trabajo tutelado de AISI, basado en Spark + HDFS
+Repositorio para el trabajo tutelado de AISI, basado en Spark + HDFS.
+
+Durante este trabajo se han usado los plugins de vagrant  `vagrant-vbguest` y `vagrant-hostmanager`. Puedes instalarlos con:
+
+``` sh
+vagrant plugin install vagrant-vbguest
+vagrant plugin install vagrant-hostmanager
+```
 
 ## Fase 1: Generar con Packer una box basada en centos7
 
@@ -9,6 +16,7 @@ packer build centosSpark.json
 
 Tras esta fase se generará una vagrant box con:
 
+ - El servicio `firewalld` parado y deshabilitado.
  - Un usuario y grupo hadoop: `provisioning/hadoopUser/creteHadoopUser.sh`
  - Java preinstalado: `provisioning/java/setup-java.sh`
  - Hadoop preinstalado: `provisioning/hadoop/setup-hadoop.sh`
@@ -26,6 +34,81 @@ Tras esta fase se generará un Vagrantfile capaz de desplegar las tres máquinas
 
  - Tanto el usuario `vagrant` como el usuario `hadoop` del nodo maestro serán capaces de establecer una sessión ssh passwordless en los nodos workers: `provisioning/hadoopUser/master.sh` y `provisioning/hadoopUser/authHadoopPasswordless.sh`.
 
+``` sh
+vagrant up
+```
+
 ## Fase 3: Aprovisionamiento con Ansible
 
 Tras esta fase se modificar el Vagrantfile para configurar correctamente los tres nodos.
+
+ - Hadoop estará funcionando con HDFS y YARN: `provisioning/ansible`.
+ - Spark esta funcionando sobre YARN: `provisioning/ansible`.
+
+``` sh
+vagrant provision --provision-with Ansible_Spark_Provisioner
+```
+
+## Fase 4: Pruebas de que esto esta funcionando
+
+### Comprueba el estado de HDFS
+
+- Usando el comando `hdfs dfsadmin`.
+
+``` sh
+vagrant ssh 
+sudo su hadoop
+hdfs dfsadmin -report
+```
+
+- Desde la interfaz web, accediendo a `http://master.local:9870`.
+
+### Comprueba el estado de Yarn
+
+- Usando el comando `yarn node`.
+
+``` sh
+vagrant ssh 
+sudo su hadoop
+yarn node -list
+```
+
+- Desde la interfaz web, accediendo a `http://master.local:8088`.
+
+### Ejecuta una tarea de prueba en el cluster con Yarn 
+
+#### Subiremos un archivo al sistema de ficheros HDFS.
+
+``` sh
+vagrant ssh 
+sudo su hadoop
+cd 
+hdfs dfs -mkdir -p /user/hadoop
+hdfs dfs -mkdir books
+wget -O alice.txt https://www.gutenberg.org/files/11/11-0.txt
+hdfs dfs -put alice.txt books
+```
+
+#### Ejecutaremos un ejemplo sobre dicho archivo
+
+Mientras la tarea se ejecuta recargando la interfaz web podemos ver el progreso en su estado.
+
+``` sh
+yarn jar ~/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.2.jar wordcount "books/alice.txt" output
+```
+
+#### Comprobaremos los resultados
+
+``` sh
+hdfs dfs -ls output
+hdfs dfs -cat output/part-r-00000 | less
+```
+
+### Ejecuta una tarea de prueba en el cluster con Spark
+
+``` sh
+vagrant ssh 
+sudo su hadoop
+spark-submit --deploy-mode cluster --class org.apache.spark.examples.SparkPi /usr/local/spark/examples/jars/spark-examples_2.12-3.1.1.jar 10
+```
+ - Puedes comprobar los resultados desde la interfaz web de Yarn, accediendo a Desde la interfaz web, accediendo a `http://master.local:8088`.

@@ -6,12 +6,12 @@
   vars_files:
     - vars/main.yml
   tasks:
-    - import_tasks: tasks/main.yml
+    - import_tasks: tasks/hadoopCommon.yml
 
 - hosts: masters
   become: yes
   tasks:
-    - import_tasks:tasks/basicMaster.yml
+    - import_tasks:tasks/hadoopDebuging.yml
 
 - hosts: masters
   environment:
@@ -20,4 +20,9 @@
   become_user: hadoop
 
   tasks:
-    - import_tasks: tasks/mymaster.yml
+    - import_tasks: tasks/hadoopMaster.yml
+
+- hosts: masters
+  become: yes
+  tasks:
+    - import_tasks:tasks/sparkMaster.yml
