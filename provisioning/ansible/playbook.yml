@@ -2,7 +2,6 @@
 - hosts: all
   become: yes
   become_user: hadoop
-
   vars_files:
     - vars/main.yml
   tasks:
@@ -11,18 +10,19 @@
 - hosts: masters
   become: yes
   tasks:
-    - import_tasks:tasks/hadoopDebuging.yml
+    - import_tasks: tasks/hadoopDebuging.yml
 
 - hosts: masters
+  vars_files:
+    - vars/main.yml
   environment:
-    JAVA_HOME: {{ java_home }}
+    JAVA_HOME: "{{ java_home }}"
   become: yes
   become_user: hadoop
-
   tasks:
     - import_tasks: tasks/hadoopMaster.yml
 
 - hosts: masters
   become: yes
   tasks:
-    - import_tasks:tasks/sparkMaster.yml
+    - import_tasks: tasks/sparkMaster.yml
