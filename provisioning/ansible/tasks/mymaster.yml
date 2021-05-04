@@ -1,6 +1,6 @@
 # Define tasks here
 - name: Format HDFS
-  command: /home/hadoop/hadoop/bin/hdfs namenode -format 
+  command: /home/hadoop/hadoop/bin/hdfs namenode -format -force
   
 - name: Start HDFS
   command: /home/hadoop/hadoop/sbin/start-dfs.sh

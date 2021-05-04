@@ -10,6 +10,13 @@
 
 - hosts: masters
   become: yes
+  tasks:
+    - import_tasks:tasks/basicMaster.yml
+
+- hosts: masters
+  environment:
+    JAVA_HOME: {{ java_home }}
+  become: yes
   become_user: hadoop
 
   tasks:

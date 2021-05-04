@@ -2,6 +2,7 @@
 master.local ansible_host=192.168.100.100 ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 [workers]
 worker1.local ansible_host=192.168.100.101 ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
+worker2.local ansible_host=192.168.100.102 ansible_ssh_private_key_file=/home/vagrant/.ssh/id_rsa
 
 [cluster:children]
 masters

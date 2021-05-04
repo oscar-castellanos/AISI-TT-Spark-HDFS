@@ -1,0 +1,12 @@
+127.0.0.1 centos7.localdomain localhost
+
+192.168.100.100 master.local master
+
+## vagrant-hostmanager-start
+192.168.100.100 master.local
+
+192.168.100.101 worker1.local
+
+192.168.100.102 worker2.local
+
+## vagrant-hostmanager-end

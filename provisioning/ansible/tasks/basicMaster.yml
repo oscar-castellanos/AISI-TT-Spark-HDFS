@@ -1,0 +1,6 @@
+- name: Copy /etc/hosts to avoid problems on master
+  copy:
+    src: newEtcHosts/hosts
+    dest: /etc/hosts
+    owner: root
+    group: root  

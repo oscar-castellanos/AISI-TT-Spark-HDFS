@@ -3,6 +3,6 @@
     <configuration>
         <property>
             <name>fs.default.name</name>
-            <value>hdfs://master.local:9000</value>
+            <value>hdfs://192.168.100.100:9000</value>
         </property>
     </configuration>

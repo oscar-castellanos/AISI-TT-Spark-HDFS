@@ -19,13 +19,13 @@ Vagrant.configure("2") do |config|
   config.vm.define "master", primary: true do |master|
     master.vm.host_name = 'master.local'
     master.vm.network :private_network, ip: "192.168.100.100"
-    master.vm.network "forwarded_port", guest: 8080, host: 8080	#head
-    master.vm.network "forwarded_port", guest: 50070, host: 50070	#head
-    master.vm.network "forwarded_port", guest: 8088, host: 18088	#body
-    master.vm.network "forwarded_port", guest: 19888, host: 19888	#body
+    master.vm.network "forwarded_port", guest: 9870, host: 9870	#HDFS
+    master.vm.network "forwarded_port", guest: 9868, host: 9868	#HDFS
+    #master.vm.network "forwarded_port", guest: 8088, host: 8088	#YARN aunque te tienes que conectar por 192.168.100.100
+    master.vm.network "forwarded_port", guest: 19888, host: 19888	#...
     master.vm.provision "shell", path: "provisioning/hadoopUser/master.sh"
     master.vm.provision "shell", path: "provisioning/hadoopUser/authHadoopPasswordless.sh"
-    master.vm.provision "ansible_local" do |ansible|
+    master.vm.provision "LAST_PROVISIONER", run: "never", type: "ansible_local" do |ansible|
       ansible.playbook = "provisioning/ansible/playbook.yml"
       ansible.limit = "all"
       ansible.inventory_path = "ansible.inventory"
