@@ -20,7 +20,10 @@
 - name: Create Java profile file
   file:
     path: /etc/profile.d/java.sh
-    state: file
+    state: touch
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
 
 - name: Set up enviroment variables
   lineinfile:

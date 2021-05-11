@@ -1,8 +1,19 @@
-- name: Download and uncompress hadoop
+- name: Download Hadoop 
+  get_url:
+    url: http://apache.cs.utah.edu/hadoop/common/{{HADOOP_VERSION}}/{{HADOOP_VERSION}}.tar.gz
+    dest: "{{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}.tar.gz"
+    timeout: 300
+
+- name: Uncompress hadoop
   unarchive:
-    src: http://apache.cs.utah.edu/hadoop/common/{{HADOOP_VERSION}}/{{HADOOP_VERSION}}.tar.gz
+    src: "{{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}.tar.gz"
     dest: "{{BASE_HADOOP_FOLDER}}"
     remote_src: yes
+
+- name: Remove previous compressed files
+  file:
+    path: "{{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}.tar.gz"
+    state: absent
 
 - name: Copy files into apropiate place
   copy:
@@ -12,7 +23,7 @@
     owner: hadoop
     group: hadoop
 
-- name: Remove previous files
+- name: Remove previous uncompressed files
   file:
     path: "{{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}"
     state: absent

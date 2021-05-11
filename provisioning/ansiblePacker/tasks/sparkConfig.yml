@@ -1,16 +1,30 @@
-- name: Download and uncompress Spark
+- name: Download Spark
+  get_url:
+    url: https://ftp.cixug.es/apache/spark/{{SPARK_VERSION}}/{{SPARK_VERSION}}-bin-{{SPARK_HADOOP_VERSION}}.tgz
+    dest: "/usr/local/{{SPARK_VERSION}}-bin-{{SPARK_HADOOP_VERSION}}.tgz"
+    timeout: 300
+
+- name: Uncompress Spark
   unarchive:
-    src: https://ftp.cixug.es/apache/spark/{{SPARK_VERSION}}/{{SPARK_VERSION}}-bin-{{SPARK_HADOOP_VERSION}}.tgz
+    src: /usr/local/{{SPARK_VERSION}}-bin-{{SPARK_HADOOP_VERSION}}.tgz
     dest: "/usr/local"
     remote_src: yes
 
+- name: Remove previous compressed files
+  file:
+    path: /usr/local/{{SPARK_VERSION}}-bin-{{SPARK_HADOOP_VERSION}}.tgz
+    state: absent
+
 - name: Move Spark
-  shell: mv /usr/local/${SPARK_VERSION}-bin-${SPARK_HADOOP_VERSION} {{SPARK_DIR}}
+  shell: mv /usr/local/{{SPARK_VERSION}}-bin-{{SPARK_HADOOP_VERSION}} {{SPARK_DIR}}
 
 - name: Create Spark profile file
   file:
     path: /etc/profile.d/spark.sh
-    state: file
+    state: touch
+    owner: root
+    group: root
+    mode: u=rw,g=r,o=r
 
 - name: Set up enviroment variables
   lineinfile:
