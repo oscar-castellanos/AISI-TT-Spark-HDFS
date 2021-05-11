@@ -104,12 +104,13 @@ hdfs dfs -ls output
 hdfs dfs -cat output/part-r-00000 | less
 ```
 
-### Ejecuta una tarea de prueba en el cluster con Spark
+### Ejecuta un par de tareas de prueba en el cluster con Spark
 
 ``` sh
 vagrant ssh 
 sudo su hadoop
 spark-submit --deploy-mode client --class org.apache.spark.examples.SparkPi /usr/local/spark/examples/jars/spark-examples_2.12-3.1.1.jar 10
+spark-submit --deploy-mode client --class org.apache.spark.examples.JavaWordCount /usr/local/spark/examples/jars/spark-examples_2.12-3.1.1.jar alice.txt
 ```
  - Puedes comprobar los resultados desde la interfaz web de Yarn, accediendo a Desde la interfaz web, accediendo a `http://master.local:8088`.
 
