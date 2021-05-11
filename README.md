@@ -118,3 +118,10 @@ spark-submit --deploy-mode cluster --class org.apache.spark.examples.SparkPi /us
 
  - https://www.linode.com/docs/guides/how-to-install-and-set-up-hadoop-cluster/
  - https://www.linode.com/docs/databases/hadoop/install-configure-run-spark-on-top-of-hadoop-yarn-cluster/
+
+### Referencias de resolución de problemas o bugs
+
+ - [Packer no encuentra vars/main.yml](https://github.com/hashicorp/packer/issues/3316)
+ - [Mover/renombrar archivos con Ansible](https://stackoverflow.com/questions/24162996/how-to-move-rename-a-file-using-an-ansible-task-on-a-remote-system)
+ - [`start-yarn.sh` no funciona correctamente con ansible](https://stackoverflow.com/questions/66295332/hadoops-resourcemanager-fails-to-start-when-started-through-ansible)
+ - [Incompatible clusterIDs error](https://sparkbyexamples.com/hadoop/incompatible-clusterids/)

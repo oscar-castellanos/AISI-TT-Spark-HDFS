@@ -1,0 +1,26 @@
+- name: Install Java 
+  package:
+    name: "{{JAVA_VERSION}}"
+    state: present
+
+- name: Move Java
+  command: mv /usr/lib/jvm/{{JAVA_VERSION}}* /usr/lib/jvm/{{JAVA_VERSION}}
+
+- name: Remove Java alternatives
+  file:
+    path: /etc/alternatives/java
+    state: absent
+
+- name: Create new Java alternatives
+  file:
+    src: /usr/lib/jvm/{{JAVA_VERSION}}/jre/bin/java
+    dest: /etc/alternatives/java
+    state: link
+
+- name: Set up enviroment variables
+  lineinfile:
+    path: "/etc/profile.d/java.sh"
+    line: "{{ item }}"
+  loop:
+    - export JAVA_HOME=/usr/lib/jvm/${JAVA_VERSION}/jre
+    - export PATH=${JAVA_HOME}/bin:${PATH}

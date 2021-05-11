@@ -12,11 +12,12 @@
     "provisioners": [
         {
             "type": "shell",
-            "inline": ["yum -y install epel-release python-setuptools wget curl sshpass vim nano ansible"]
+            "inline": ["sudo yum -y install epel-release python-setuptools wget curl sshpass vim nano ansible"]
         },
         {
             "type": "ansible-local",
-            "script": "provisioning/ansiblePacker/playbook.yml"
+            "playbook_file": "provisioning/ansiblePacker/playbook.yml",
+            "playbook_dir": "provisioning/ansiblePacker"
         },
         {
             "type": "shell",
@@ -28,7 +29,7 @@
         },
         {
             "type": "shell",
-            "inline": ["yum -y remove ansible sshpass python-setuptools epel-release"]
+            "inline": ["sudo yum -y remove ansible sshpass python-setuptools epel-release"]
         }
     ]
 }

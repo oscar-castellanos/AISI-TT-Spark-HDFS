@@ -4,6 +4,11 @@
     state: stopped
     enabled: no
 
+- name: Create hadoop group
+  group:
+    name: hadoop
+    state: present
+
 - name: Create hadoop user
   user:
     name: hadoop

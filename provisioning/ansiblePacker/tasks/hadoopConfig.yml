@@ -1,26 +1,26 @@
 - name: Download and uncompress hadoop
   unarchive:
     src: http://apache.cs.utah.edu/hadoop/common/{{HADOOP_VERSION}}/{{HADOOP_VERSION}}.tar.gz
-    dest: {{BASE_HADOOP_FOLDER}}
+    dest: "{{BASE_HADOOP_FOLDER}}"
     remote_src: yes
 
 - name: Copy files into apropiate place
   copy:
     remote_src: yes
-    src: {{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}
-    dest: {{BASE_HADOOP_FOLDER}}hadoop
+    src: "{{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}"
+    dest: "{{BASE_HADOOP_FOLDER}}hadoop"
     owner: hadoop
     group: hadoop
 
 - name: Remove previous files
   file:
-    path: {{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}
+    path: "{{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}"
     state: absent
 
 - name: Add bins to path for hadoop user
   lineinfile:
-    path: {{BASE_HADOOP_FOLDER}}.bashrc
-    line: {{ item }}
+    path: "{{BASE_HADOOP_FOLDER}}.bashrc"
+    line: "{{ item }}"
   loop:
     - export HADOOP_HOME={{BASE_HADOOP_FOLDER}}hadoop
     - export PATH=${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
