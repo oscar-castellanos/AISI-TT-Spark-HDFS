@@ -1,0 +1,13 @@
+- name: Stop and disable firewalld
+  service:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Create hadoop user
+  user:
+    name: hadoop
+    password: $6$iPGjyDws$QATK5dsNO/aWKbiMV1l6lu4QiMUFDt2UnLFM1.ayhcGg7rORuMWAOvuaYVLDJvgTo4P7hWusOQddXU38NG3Tx. # .h4d00p.
+    group: hadoop
+    shell: /bin/bash
+    home: /home/hadoop

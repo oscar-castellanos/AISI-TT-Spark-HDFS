@@ -1,2 +1,4 @@
 # Modify variables
 java_home: /usr/lib/jvm/java-1.8.0-openjdk/jre
+HADOOP_VERSION: hadoop-3.2.2
+BASE_HADOOP_FOLDER: /home/hadoop/
