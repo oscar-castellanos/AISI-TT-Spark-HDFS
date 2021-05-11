@@ -4,7 +4,7 @@
     state: present
 
 - name: Move Java
-  command: mv /usr/lib/jvm/{{JAVA_VERSION}}* /usr/lib/jvm/{{JAVA_VERSION}}
+  shell: mv /usr/lib/jvm/{{JAVA_VERSION}}* /usr/lib/jvm/{{JAVA_VERSION}}
 
 - name: Remove Java alternatives
   file:
@@ -16,6 +16,11 @@
     src: /usr/lib/jvm/{{JAVA_VERSION}}/jre/bin/java
     dest: /etc/alternatives/java
     state: link
+
+- name: Create Java profile file
+  file:
+    path: /etc/profile.d/java.sh
+    state: file
 
 - name: Set up enviroment variables
   lineinfile:

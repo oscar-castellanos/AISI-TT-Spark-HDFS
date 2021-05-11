@@ -3,3 +3,6 @@ java_home: /usr/lib/jvm/java-1.8.0-openjdk/jre
 JAVA_VERSION: java-1.8.0-openjdk
 HADOOP_VERSION: hadoop-3.2.2
 BASE_HADOOP_FOLDER: /home/hadoop/
+SPARK_VERSION: spark-3.1.1
+SPARK_HADOOP_VERSION: hadoop3.2
+SPARK_DIR: /usr/local/spark

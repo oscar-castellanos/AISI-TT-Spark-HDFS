@@ -21,14 +21,6 @@
         },
         {
             "type": "shell",
-            "script": "provisioning/java/setup-java.sh"
-        },
-        {
-            "type": "shell",
-            "script": "provisioning/spark/setup-spark.sh"
-        },
-        {
-            "type": "shell",
             "inline": ["sudo yum -y remove ansible sshpass python-setuptools epel-release"]
         }
     ]
