@@ -44,7 +44,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "worker2" do |worker2|
     worker2.vm.host_name = 'worker2.local'
     worker2.vm.network :private_network, ip: "192.168.100.102"
-	  worker2.vm.provision "shell", path: "provisioning/hadoopUser/authHadoopPasswordless.sh"
+	worker2.vm.provision "shell", path: "provisioning/hadoopUser/authHadoopPasswordless.sh"
   end
   
 end

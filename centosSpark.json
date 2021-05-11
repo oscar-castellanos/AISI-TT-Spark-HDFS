@@ -4,7 +4,6 @@
             "communicator": "ssh",
             "type": "vagrant",
             "source_path": "generic/centos7",
-            "box_name": "aff-ocr-aisi2021tt/centos7",
             "provider": "virtualbox"
         }
     ],
