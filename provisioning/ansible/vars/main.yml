@@ -1,2 +1,3 @@
 # Modify variables
 java_home: /usr/lib/jvm/java-1.8.0-openjdk/jre
+hadoop_home: /home/hadoop/hadoop

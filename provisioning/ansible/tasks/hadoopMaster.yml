@@ -1,9 +1,9 @@
 # Define tasks here
 - name: Format HDFS
-  command: /home/hadoop/hadoop/bin/hdfs namenode -format -force
+  command: "{{ hadoop_home }}/bin/hdfs namenode -format -force"
   
 - name: Start HDFS
-  command: /home/hadoop/hadoop/sbin/start-dfs.sh
+  command: "{{ hadoop_home }}/sbin/start-dfs.sh"
   
 - name: Start Yarn
-  command: nohup /home/hadoop/hadoop/sbin/start-yarn.sh &
+  command: nohup {{ hadoop_home }}/sbin/start-yarn.sh &
