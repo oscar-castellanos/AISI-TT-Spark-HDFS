@@ -38,7 +38,7 @@ vagrant box add --name aff-ocr-aisi2021/centos7 output-vagrant/package.box
 
 ## Fase 2: Generar un proyecto Vagrant para desplegar el cluster virtual
 
-Tras esta fase se generará un Vagrantfile capaz de desplegar las tres máquinas virtuales, un manager y dos workers, con los recursos correctos.
+Tras esta fase se generará un Vagrantfile capaz de desplegar las tres máquinas virtuales, un manager (haciendo de NameNode y ResourceManager) y dos workers (haciendo de DataNodes y NodeManagers), con los recursos correctos.
 
  - Tanto el usuario `vagrant` como el usuario `hadoop` del nodo maestro serán capaces de establecer una sesión ssh passwordless en los nodos workers: `provisioning/hadoopUser/master.sh` y `provisioning/hadoopUser/authHadoopPasswordless.sh`.
 
