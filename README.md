@@ -16,7 +16,7 @@ vagrant plugin install vagrant-vbguest
 vagrant plugin install vagrant-hostmanager
 ```
 
-## Fase 1: Generar con Packer una box basada en centos7
+## Fase 1: Generar con Packer y Ansible una box basada en centos7
 
 ``` sh
 packer build centosSpark.json
@@ -24,11 +24,11 @@ packer build centosSpark.json
 
 Tras esta fase se generará una vagrant box con:
 
- - El servicio `firewalld` parado y deshabilitado.
- - Un usuario y grupo hadoop: `provisioning/hadoopUser/creteHadoopUser.sh`
- - Java preinstalado: `provisioning/java/setup-java.sh`
- - Hadoop preinstalado: `provisioning/hadoop/setup-hadoop.sh`
- - Spark preinstalado: `provisioning/spark/setup-spark.sh`
+ - El servicio `firewalld` parado y deshabilitado: `provisioning/ansiblePacker/tasks/generalConfig.yml`
+ - Un usuario y grupo hadoop: `provisioning/ansiblePacker/tasks/generalConfig.yml`
+ - Java preinstalado: `provisioning/ansiblePacker/tasks/javaConfig.yml`
+ - Hadoop preinstalado: `provisioning/ansiblePacker/tasks/hadoopConfig.yml`
+ - Spark preinstalado: `provisioning/ansiblePacker/tasks/sparkConfig.yml`
 
  Finalmente añade la box para su uso con vagrant.
 
@@ -40,7 +40,7 @@ vagrant box add --name aff-ocr-aisi2021/centos7 output-vagrant/package.box
 
 Tras esta fase se generará un Vagrantfile capaz de desplegar las tres máquinas virtuales, un manager y dos workers, con los recursos correctos.
 
- - Tanto el usuario `vagrant` como el usuario `hadoop` del nodo maestro serán capaces de establecer una sessión ssh passwordless en los nodos workers: `provisioning/hadoopUser/master.sh` y `provisioning/hadoopUser/authHadoopPasswordless.sh`.
+ - Tanto el usuario `vagrant` como el usuario `hadoop` del nodo maestro serán capaces de establecer una sesión ssh passwordless en los nodos workers: `provisioning/hadoopUser/master.sh` y `provisioning/hadoopUser/authHadoopPasswordless.sh`.
 
 ``` sh
 vagrant up
