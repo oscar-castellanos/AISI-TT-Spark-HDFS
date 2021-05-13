@@ -23,7 +23,7 @@
     path: "{{BASE_HADOOP_FOLDER}}.bashrc"
     line: "{{ item }}"
   loop:
-    - "export HADOOP_HOME={{BASE_HADOOP_FOLDER}}hadoop"
-    - "export PATH=\\${PATH}:\\${HADOOP_HOME}/bin:\\${HADOOP_HOME}/sbin"
-    - "export HADOOP_CONF_DIR=\\${HADOOP_HOME}/etc/hadoop"
-    - "export LD_LIBRARY_PATH=\\${HADOOP_HOME}/lib/native:\\$LD_LIBRARY_PATH"
+    - export HADOOP_HOME={{BASE_HADOOP_FOLDER}}hadoop
+    - export PATH=${PATH}:${HADOOP_HOME}/bin:${HADOOP_HOME}/sbin
+    - export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
+    - export LD_LIBRARY_PATH=${HADOOP_HOME}/lib/native:$LD_LIBRARY_PATH
