@@ -8,6 +8,8 @@
   unarchive:
     src: "{{BASE_HADOOP_FOLDER}}{{HADOOP_VERSION}}.tar.gz"
     dest: "{{BASE_HADOOP_FOLDER}}"
+    owner: hadoop
+    group: hadoop
     remote_src: yes
 
 - name: Remove previous compressed files

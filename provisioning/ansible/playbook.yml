@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  gather_facts: no
   become: yes
   become_user: hadoop
   vars_files:
@@ -8,11 +9,13 @@
     - import_tasks: tasks/hadoopCommon.yml
 
 - hosts: masters
+  gather_facts: no
   become: yes
   tasks:
     - import_tasks: tasks/hadoopDebuging.yml
 
 - hosts: masters
+  gather_facts: no
   vars_files:
     - vars/main.yml
   environment:
@@ -23,6 +26,7 @@
     - import_tasks: tasks/hadoopMaster.yml
 
 - hosts: masters
+  gather_facts: no
   become: yes
   tasks:
     - import_tasks: tasks/sparkMaster.yml
