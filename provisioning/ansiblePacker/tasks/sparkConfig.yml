@@ -31,5 +31,5 @@
     path: "/etc/profile.d/spark.sh"
     line: "{{ item }}"
   loop:
-    - export SPARK_HOME={{SPARK_DIR}}
-    - export PATH=${SPARK_HOME}/bin:${PATH}
+    - "export SPARK_HOME={{SPARK_DIR}}"
+    - "export PATH=\\${SPARK_HOME}/bin:\\${PATH}"

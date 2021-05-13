@@ -30,5 +30,5 @@
     path: "/etc/profile.d/java.sh"
     line: "{{ item }}"
   loop:
-    - export JAVA_HOME=/usr/lib/jvm/${JAVA_VERSION}/jre
-    - export PATH=${JAVA_HOME}/bin:${PATH}
+    - "export JAVA_HOME=/usr/lib/jvm/\\${JAVA_VERSION}/jre"
+    - "export PATH=\\${JAVA_HOME}/bin:\\${PATH}"

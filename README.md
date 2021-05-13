@@ -1,7 +1,15 @@
 # AISI-TT-Spark-HDFS
 Repositorio para el trabajo tutelado de AISI, basado en Spark + HDFS.
 
-Durante este trabajo se han usado los plugins de vagrant  `vagrant-vbguest` y `vagrant-hostmanager`. Puedes instalarlos con:
+## Fase 0: Instalación de los pre-requisitos
+
+Para este proyecto es necesario tener instalado:
+
+- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) versión >= 6.1.X con las Guest Additions.
+- [Vagrant](https://www.vagrantup.com/docs/installation). Hemos usado la versión 2.2.14.
+- [Packer](https://learn.hashicorp.com/tutorials/packer/getting-started-install). Hemos usado la versión 1.7.0.
+
+Además, se han usado los plugins de vagrant  `vagrant-vbguest` y `vagrant-hostmanager`. Puedes instalarlos con:
 
 ``` sh
 vagrant plugin install vagrant-vbguest
